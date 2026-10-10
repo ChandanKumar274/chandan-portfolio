@@ -1,0 +1,1217 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chandan Kumar | Java Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Chandan Kumar - Java Full Stack Developer specializing in Spring Boot, REST APIs, Microservices, and scalable web solutions." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c3aed'/%3E%3Cstop offset='100%25' stop-color='%2338bdf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='25' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='800' font-size='60'%3EC%3C/text%3E%3C/svg%3E" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+        })();
+    </script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#020617', // Slate 950
+                        card: 'rgba(30, 41, 59, 0.4)',
+                        accent: '#8b5cf6', // Violet 500
+                        electric: '#38bdf8', // Sky 400
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2)',
+                        'neon-hover': '0 0 30px rgba(139, 92, 246, 0.7), 0 0 50px rgba(56, 189, 248, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* --- LIGHTNING & CLOUDS ATMOSPHERIC BACKGROUND --- */
+        .storm-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 75%);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/hudsonmarinho/header-cloud/master/images/clouds.png');
+            background-size: cover;
+            opacity: 0.15;
+            animation: cloudMove 65s linear infinite;
+        }
+
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .flash-anim {
+            animation: flash 7.5s infinite;
+        }
+
+        @keyframes flash {
+            0%, 90%, 100% {
+                opacity: 0;
+            }
+            92% {
+                opacity: 0.35;
+                filter: blur(6px);
+                background: rgba(139, 92, 246, 0.22);
+            }
+            93% {
+                opacity: 0;
+            }
+            94% {
+                opacity: 0.22;
+            }
+            96% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes cloudMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        /* --- GLASSMORPHISM --- */
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* --- TEXT GRADIENTS --- */
+        .text-gradient {
+            background: linear-gradient(135deg, #c084fc 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- NEON BUTTONS & CARDS --- */
+        .card-hover {
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.18);
+        }
+
+        .btn-neon {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #0284c7);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-neon:hover::before {
+            width: 100%;
+        }
+
+        .btn-neon:hover {
+            box-shadow: 0 0 18px rgba(124, 58, 237, 0.6);
+            border-color: transparent;
+        }
+
+        /* --- INPUTS --- */
+        .input-dark {
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .input-dark:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.35);
+            background: rgba(30, 41, 59, 0.85);
+        }
+
+        /* --- ANIMATED ROTATING BORDER FOR AVATAR --- */
+        .neon-border-animated {
+            position: relative;
+            background: #0f172a;
+            border-radius: 9999px;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .neon-border-animated::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(transparent, transparent, transparent, #8b5cf6, #38bdf8);
+            animation: rotateBorder 4s linear infinite;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+        }
+
+        .neon-border-animated::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: #0f172a;
+            border-radius: 9999px;
+            z-index: -1;
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+
+        /* --- CUSTOM SMOOTH CURSOR (Non-touch screens only) --- */
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+        }
+
+        #cursor-dot,
+        #cursor-outline {
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <!-- Interactive Cursor Elements (Desktop only) -->
+    <div id="cursor-dot"
+        class="fixed top-0 left-0 w-2 h-2 bg-white rounded-full z-[9999] mix-blend-difference hidden md:block"></div>
+    <div id="cursor-outline"
+        class="fixed top-0 left-0 w-8 h-8 border border-white/50 rounded-full z-[9999] transition-transform duration-100 ease-out hidden md:block">
+    </div>
+
+    <!-- Atmospheric Storm Background -->
+    <div class="storm-bg">
+        <div class="clouds"></div>
+        <div class="lightning flash-anim"></div>
+        <div class="lightning flash-anim" style="animation-delay: 4s; left: 25%;"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div
+                    class="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-600 to-sky-500 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:shadow-neon transition-all duration-300">
+                    C
+                </div>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg tracking-wide text-white group-hover:text-accent transition-colors">
+                        Chandan Kumar
+                    </h1>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <div class="hidden md:flex items-center gap-7">
+                <a href="#home"
+                    class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+                <a href="#about"
+                    class="text-sm font-medium text-slate-300 hover:text-white transition-colors">About</a>
+                <a href="#skills"
+                    class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Skills</a>
+                <a href="#portfolio"
+                    class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Projects</a>
+                <a href="#contact"
+                    class="px-5 py-2 rounded-full border border-violet-500/50 text-violet-300 font-semibold text-sm btn-neon hover:text-white">
+                    Let's Talk
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="menuBtn" aria-label="Toggle navigation" class="md:hidden text-2xl text-white focus:outline-none p-1">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobileNav"
+            class="hidden absolute top-full left-0 w-full glass-dark border-t border-slate-800 p-5 flex flex-col gap-3 md:hidden shadow-2xl">
+            <a href="#home" class="text-slate-300 hover:text-accent font-medium py-1.5 text-sm">Home</a>
+            <a href="#about" class="text-slate-300 hover:text-accent font-medium py-1.5 text-sm">About</a>
+            <a href="#skills" class="text-slate-300 hover:text-accent font-medium py-1.5 text-sm">Skills</a>
+            <a href="#portfolio" class="text-slate-300 hover:text-accent font-medium py-1.5 text-sm">Projects</a>
+            <a href="#contact" class="text-accent font-semibold py-1.5 text-sm">Contact Me</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-12">
+
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="home" class="min-h-[80vh] flex flex-col lg:flex-row items-center justify-between gap-10 pt-4 sm:pt-6">
+            <div class="lg:w-3/5 space-y-6 text-left" data-aos="fade-right">
+                <!-- Status Badge -->
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-dark border border-violet-500/30 transition-all duration-300 hover:scale-105 cursor-default">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-violet-500"></span>
+                    </span>
+                    <span class="text-xs font-medium text-violet-200 tracking-wider uppercase">Open to Opportunities</span>
+                </div>
+
+                <!-- Main Greeting & Name -->
+                <div>
+                    <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hello, I'm <br>
+                        <span class="text-gradient">Chandan Kumar</span>
+                    </h2>
+                    <!-- Dynamic Typewriter Line -->
+                    <div class="h-9 mt-2 flex items-center">
+                        <span class="text-lg sm:text-xl md:text-2xl text-slate-300 font-light" id="typewriter"></span>
+                        <span class="animate-pulse text-accent text-xl font-bold ml-1">|</span>
+                    </div>
+                </div>
+
+                <!-- Bio Summary (Clean & Professional, no colored highlights) -->
+                <p class="text-slate-400 max-w-2xl text-sm sm:text-base leading-relaxed">
+                    A results-driven Java Full Stack Developer with practical experience in building scalable web applications, robust RESTful APIs, and microservices. Dedicated to writing clean, maintainable code and delivering reliable end-to-end digital solutions that ensure performance, scalability, and seamless user experiences.
+                </p>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="flex flex-wrap gap-3.5 pt-1">
+                    <a href="#contact"
+                        class="px-6 sm:px-8 py-3 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-violet-500/25 hover:shadow-neon hover:-translate-y-0.5 transition-all duration-300">
+                        Hire Me
+                    </a>
+                    <a href="assets/Chandan_Kumar_Resume.pdf" download="Chandan_Kumar_Resume.pdf"
+                        class="px-6 sm:px-8 py-3 rounded-lg glass-dark border border-slate-600 text-white font-medium text-sm hover:border-white hover:bg-white/5 transition-all duration-300 group flex items-center">
+                        Download CV <i
+                            class="fa-solid fa-download ml-2 group-hover:translate-y-0.5 transition-transform text-slate-400 group-hover:text-white"></i>
+                    </a>
+                </div>
+
+                <!-- Stats Counters -->
+                <div class="flex items-center gap-8 sm:gap-10 pt-5 border-t border-slate-800/60">
+                    <div class="group cursor-default transition-all duration-300">
+                        <div
+                            class="text-2xl sm:text-3xl font-bold text-white flex group-hover:text-accent transition-colors duration-300">
+                            <span id="projectCounter">0</span>+
+                        </div>
+                        <div class="text-xs sm:text-sm text-slate-400 font-medium">
+                            Projects Completed
+                        </div>
+                    </div>
+
+                    <div class="group cursor-default transition-all duration-300">
+                        <div
+                            class="text-2xl sm:text-3xl font-bold text-white group-hover:text-electric transition-colors duration-300">
+                            1+
+                        </div>
+                        <div class="text-xs sm:text-sm text-slate-400 font-medium">
+                            Year Experience
+                        </div>
+                    </div>
+
+                    <div class="group cursor-default transition-all duration-300">
+                        <div
+                            class="text-2xl sm:text-3xl font-bold text-white group-hover:text-violet-400 transition-colors duration-300">
+                            7.64
+                        </div>
+                        <div class="text-xs sm:text-sm text-slate-400 font-medium">
+                            B.Tech CGPA
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Photo with Animated Neon Border -->
+            <div class="lg:w-2/5 flex justify-center relative my-4 sm:my-0" data-aos="fade-left">
+                <!-- Glowing ambient background -->
+                <div class="absolute inset-0 bg-violet-600/20 blur-[90px] rounded-full pointer-events-none"></div>
+
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-88 md:h-88 rounded-full p-2 neon-border-animated shadow-2xl">
+                    <div class="w-full h-full rounded-full overflow-hidden border-4 border-slate-900 bg-slate-900">
+                        <img src="assets/profile.jpg" alt="Chandan Kumar"
+                            class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+
+                <!-- Floating Java Full Stack Badge -->
+                <div class="absolute -bottom-3 -left-2 sm:-bottom-5 sm:-left-4 glass-dark p-3.5 sm:p-4 rounded-xl border border-slate-700 shadow-xl animate-bounce"
+                    style="animation-duration: 3.5s;">
+                    <div class="flex items-center gap-3 group cursor-default">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl transition-all duration-300 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] text-slate-400">Expert in</div>
+                            <div class="font-bold text-white text-sm group-hover:text-blue-400 transition-colors">
+                                Java Full Stack
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT & EDUCATION / EXPERIENCE ==================== -->
+        <section id="about" class="py-16 sm:py-20 w-full relative">
+            <div class="container mx-auto px-1 sm:px-2">
+                <!-- About Header & Description (Clean, professional, no highlights) -->
+                <div class="w-full max-w-4xl mx-auto mb-14 text-center" data-aos="fade-up">
+                    <h3 class="text-2xl sm:text-4xl font-bold text-white mb-5">
+                        About <span class="text-gradient">Me</span>
+                    </h3>
+                    <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+                        A results-oriented Full Stack Developer with practical experience in designing and developing robust web applications and high-performance backend systems. Skilled in architecting responsive user interfaces and scalable RESTful microservices, with an uncompromising focus on clean object-oriented design, database optimization, and Agile development methodologies. Committed to continuous growth and delivering reliable, client-focused digital solutions.
+                    </p>
+                </div>
+
+                <!-- 2-Column Layout: Education (Left) & Experience (Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                    <!-- Education Column -->
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h4 class="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="w-7 h-1 bg-accent rounded-full"></span> Education
+                        </h4>
+
+                        <div class="space-y-4">
+                            <!-- 1. B.Tech -->
+                            <div class="glass-dark p-5 rounded-xl border border-slate-700/80 hover:border-accent transition-colors relative pl-7 group">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-slate-700 group-hover:bg-accent transition-colors rounded-l-xl"></div>
+                                <div class="flex flex-wrap justify-between items-start gap-2 mb-1.5">
+                                    <h5 class="text-base sm:text-lg font-bold text-white">
+                                        B.Tech in Computer Science Engineering
+                                    </h5>
+                                    <span class="px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 text-xs font-semibold border border-violet-500/20">
+                                        2022 - 2026
+                                    </span>
+                                </div>
+                                <p class="text-slate-400 text-xs sm:text-sm mb-1">
+                                    Patel College of Science and Technology
+                                </p>
+                                <div class="text-xs text-slate-500">CGPA: 7.64</div>
+                            </div>
+
+                            <!-- 2. Higher Secondary (12th) -->
+                            <div class="glass-dark p-5 rounded-xl border border-slate-700/80 hover:border-accent transition-colors relative pl-7 group">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-slate-700 group-hover:bg-accent transition-colors rounded-l-xl"></div>
+                                <div class="flex flex-wrap justify-between items-start gap-2 mb-1.5">
+                                    <h5 class="text-base sm:text-lg font-bold text-white">
+                                        Higher Secondary (12th)
+                                    </h5>
+                                    <span class="px-2 py-0.5 rounded bg-slate-700/50 text-slate-300 text-xs font-semibold">
+                                        2019 - 2021
+                                    </span>
+                                </div>
+                                <p class="text-slate-400 text-xs sm:text-sm mb-1">
+                                    I.G.S.N.S College, Kuchaikot, Gopalganj
+                                </p>
+                                <div class="text-xs text-slate-500">Percentage: 65%</div>
+                            </div>
+
+                            <!-- 3. Secondary (10th) -->
+                            <div class="glass-dark p-5 rounded-xl border border-slate-700/80 hover:border-accent transition-colors relative pl-7 group">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-slate-700 group-hover:bg-accent transition-colors rounded-l-xl"></div>
+                                <div class="flex flex-wrap justify-between items-start gap-2 mb-1.5">
+                                    <h5 class="text-base sm:text-lg font-bold text-white">
+                                        Secondary (10th)
+                                    </h5>
+                                    <span class="px-2 py-0.5 rounded bg-slate-700/50 text-slate-300 text-xs font-semibold">
+                                        2018 - 2019
+                                    </span>
+                                </div>
+                                <p class="text-slate-400 text-xs sm:text-sm mb-1">
+                                    M.C.H.S, Uchakagaon, Gopalganj
+                                </p>
+                                <div class="text-xs text-slate-500">Percentage: 64.8%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Column (Timeline style) -->
+                    <div id="experience" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="w-7 h-1 bg-electric rounded-full"></span> Experience
+                        </h4>
+
+                        <div class="space-y-4 border-l-2 border-slate-800 ml-3">
+
+                            <!-- 1. Aanand Metal -->
+                            <div class="relative pl-6 sm:pl-7 group/timeline">
+                                <div
+                                    class="absolute -left-[9px] top-5 w-4 h-4 rounded-full bg-slate-900 border-2 border-electric box-content group-hover/timeline:bg-electric transition-all duration-300 z-10">
+                                </div>
+
+                                <div class="glass-dark p-5 rounded-xl border border-slate-700 card-hover group/card hover:border-electric/60 transition-all relative overflow-hidden">
+                                    <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                        <h5 class="text-base font-bold text-white group-hover/card:text-electric transition-colors">
+                                            Freelance Full Stack Developer
+                                        </h5>
+                                        <span class="px-2 py-0.5 rounded bg-electric/10 text-electric text-[11px] font-semibold border border-electric/20">
+                                            Client Project
+                                        </span>
+                                    </div>
+                                    <div class="text-electric/80 text-xs mb-2 font-medium">Aanand Metal • Freelance</div>
+                                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                        Developed ITRIK, a complete E-Commerce platform for Aanand Metal with a Spring Boot backend, delivering 4 core features: secure authentication, product catalog, order management, and a responsive UI.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 2. AVEROFT -->
+                            <div class="relative pl-6 sm:pl-7 group/timeline">
+                                <div
+                                    class="absolute -left-[9px] top-5 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500 box-content group-hover/timeline:bg-violet-500 transition-all duration-300 z-10">
+                                </div>
+
+                                <div class="glass-dark p-5 rounded-xl border border-slate-700 card-hover group/card hover:border-violet-500/60 transition-all relative overflow-hidden">
+                                    <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                        <h5 class="text-base font-bold text-white group-hover/card:text-violet-400 transition-colors">
+                                            Java Developer
+                                        </h5>
+                                        <span class="px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 text-[11px] font-semibold border border-violet-500/20">
+                                            Healthcare
+                                        </span>
+                                    </div>
+                                    <div class="text-violet-400/80 text-xs mb-2 font-medium">AVEROFT • Aug 2025 - Mar 2026</div>
+                                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                        Built 7 core modules of a large-scale Healthcare Management System (Patient Registration, Appointments, EHR, e-Prescriptions, Pharmacy, Diagnostics, Inventory) using Java, Spring Boot, Hibernate, and PostgreSQL with role-based access for 5 user roles.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 3. Optifyx Technology -->
+                            <div class="relative pl-6 sm:pl-7 group/timeline">
+                                <div
+                                    class="absolute -left-[9px] top-5 w-4 h-4 rounded-full bg-slate-900 border-2 border-slate-400 box-content group-hover/timeline:bg-slate-400 transition-all duration-300 z-10">
+                                </div>
+
+                                <div class="glass-dark p-5 rounded-xl border border-slate-700 card-hover group/card hover:border-slate-400/60 transition-all relative overflow-hidden">
+                                    <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                        <h5 class="text-base font-bold text-white group-hover/card:text-slate-300 transition-colors">
+                                            Java Programming Intern
+                                        </h5>
+                                        <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px] font-semibold border border-slate-700">
+                                            Internship
+                                        </span>
+                                    </div>
+                                    <div class="text-slate-400 text-xs mb-2 font-medium">Optifyx Technology • Jan 2025 - Feb 2025 (Remote, Delhi)</div>
+                                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                        Developed modular Java modules using OOP principles and design patterns. Assisted in backend REST APIs and secure JDBC database operations.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 4. Oasis Infobyte -->
+                            <div class="relative pl-6 sm:pl-7 group/timeline">
+                                <div
+                                    class="absolute -left-[9px] top-5 w-4 h-4 rounded-full bg-slate-900 border-2 border-slate-400 box-content group-hover/timeline:bg-slate-400 transition-all duration-300 z-10">
+                                </div>
+
+                                <div class="glass-dark p-5 rounded-xl border border-slate-700 card-hover group/card hover:border-slate-400/60 transition-all relative overflow-hidden">
+                                    <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                        <h5 class="text-base font-bold text-white group-hover/card:text-slate-300 transition-colors">
+                                            Web Development & Designing Intern
+                                        </h5>
+                                    </div>
+                                    <div class="text-slate-400 text-xs mb-2 font-medium">Oasis Infobyte • Dec 2024 (1 month)</div>
+                                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                        Gained practical experience implementing responsive web layouts and user interfaces with HTML, CSS, and JavaScript.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TECHNICAL SKILLS SECTION ==================== -->
+        <section id="skills" class="py-12 sm:py-16">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h3 class="text-2xl sm:text-4xl font-bold text-white">
+                    Technical <span class="text-gradient">Arsenal</span>
+                </h3>
+                <p class="text-slate-400 mt-2 text-xs sm:text-sm">Technologies and frameworks I utilize to build modern software</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4" data-aos="fade-up">
+                <!-- Java -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-red-500 hover:bg-red-500/10 transition-all cursor-default">
+                    <i class="fa-brands fa-java text-3xl text-red-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Java / Java 8</div>
+                </div>
+
+                <!-- Spring Boot -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 hover:bg-emerald-500/10 transition-all cursor-default">
+                    <i class="fa-solid fa-leaf text-3xl text-emerald-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Spring Boot</div>
+                </div>
+
+                <!-- Spring Security & JWT -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-indigo-500 hover:bg-indigo-500/10 transition-all cursor-default">
+                    <i class="fa-solid fa-lock text-3xl text-indigo-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Spring Security</div>
+                </div>
+
+                <!-- Hibernate / JPA -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-amber-500 hover:bg-amber-500/10 transition-all cursor-default">
+                    <i class="fa-solid fa-layer-group text-3xl text-amber-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Hibernate & JPA</div>
+                </div>
+
+                <!-- PostgreSQL & MySQL -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-sky-500 hover:bg-sky-500/10 transition-all cursor-default">
+                    <i class="fa-solid fa-database text-3xl text-sky-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">MySQL / Postgres</div>
+                </div>
+
+                <!-- RESTful Web Services -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-violet-500 hover:bg-violet-500/10 transition-all cursor-default">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-violet-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">RESTful APIs</div>
+                </div>
+
+                <!-- React.js -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-cyan-400 hover:bg-cyan-400/10 transition-all cursor-default">
+                    <i class="fa-brands fa-react text-3xl text-cyan-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">React.js</div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-yellow-400 hover:bg-yellow-400/10 transition-all cursor-default">
+                    <i class="fa-brands fa-js text-3xl text-yellow-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">JavaScript</div>
+                </div>
+
+                <!-- HTML5 & CSS3 -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-orange-500 hover:bg-orange-500/10 transition-all cursor-default">
+                    <i class="fa-brands fa-html5 text-3xl text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">HTML5 & CSS3</div>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-sky-400 hover:bg-sky-400/10 transition-all cursor-default">
+                    <i class="fa-solid fa-wind text-3xl text-sky-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Tailwind CSS</div>
+                </div>
+
+                <!-- Git & GitHub -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-purple-400 hover:bg-purple-400/10 transition-all cursor-default">
+                    <i class="fa-brands fa-github text-3xl text-white mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Git & GitHub</div>
+                </div>
+
+                <!-- Postman & Maven -->
+                <div class="group glass-dark p-4 rounded-xl border border-slate-700 text-center hover:border-orange-400 hover:bg-orange-400/10 transition-all cursor-default">
+                    <i class="fa-solid fa-screwdriver-wrench text-3xl text-orange-400 mb-2 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-xs sm:text-sm text-slate-300 font-medium">Maven & Postman</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FEATURED PROJECTS SECTION ==================== -->
+        <section id="portfolio" class="py-12 sm:py-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-3" data-aos="fade-right">
+                <div>
+                    <h3 class="text-2xl sm:text-4xl font-bold text-white">
+                        Featured <span class="text-gradient">Projects</span>
+                    </h3>
+                    <p class="text-slate-400 mt-1 text-xs sm:text-sm">A collection of my recent engineering work</p>
+                </div>
+                <a href="https://github.com/ChandanKumar274" target="_blank"
+                    class="text-accent hover:text-white transition-colors flex items-center gap-2 text-xs sm:text-sm font-semibold">
+                    View All on GitHub <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. ITRIK E-Commerce Platform -->
+                <div class="glass-dark rounded-2xl overflow-hidden border border-slate-700 card-hover group flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-blue-500/20 text-blue-300 text-xs px-2.5 py-1 rounded-full border border-blue-500/30 font-medium">
+                                Full Stack Spring Boot
+                            </span>
+                            <a href="https://github.com/ChandanKumar274" target="_blank"
+                                class="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-300 bg-slate-800/60 border border-slate-600 rounded-full hover:text-white hover:bg-violet-600 transition-all">
+                                GitHub <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                            ITRIK E-Commerce Platform
+                        </h4>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            A production e-commerce platform built for Aanand Metal. Features Spring Boot REST backend, encrypted user authentication, dynamic product catalog, cart, and order processing.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Spring Boot • MySQL</span>
+                        <span class="text-gradient font-semibold">Client Project</span>
+                    </div>
+                </div>
+
+                <!-- 2. Hub & Spoke Healthcare System -->
+                <div class="glass-dark rounded-2xl overflow-hidden border border-slate-700 card-hover group flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-emerald-500/20 text-emerald-300 text-xs px-2.5 py-1 rounded-full border border-emerald-500/30 font-medium">
+                                Enterprise Healthcare
+                            </span>
+                            <a href="https://github.com/ChandanKumar274" target="_blank"
+                                class="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-300 bg-slate-800/60 border border-slate-600 rounded-full hover:text-white hover:bg-emerald-600 transition-all">
+                                GitHub <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                            Hub & Spoke Healthcare System
+                        </h4>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            Distributed hospital platform digitalizing appointment booking, Electronic Health Records (EHR), lab processing, and pharmacy inventories with Spring Security and JWT.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>PostgreSQL • JWT • Spring</span>
+                        <span class="text-emerald-400 font-semibold">Averoft</span>
+                    </div>
+                </div>
+
+                <!-- 3. Centralized EHR Service -->
+                <div class="glass-dark rounded-2xl overflow-hidden border border-slate-700 card-hover group flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-violet-500/20 text-violet-300 text-xs px-2.5 py-1 rounded-full border border-violet-500/30 font-medium">
+                                RESTful Web Services
+                            </span>
+                            <a href="https://github.com/ChandanKumar274" target="_blank"
+                                class="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-300 bg-slate-800/60 border border-slate-600 rounded-full hover:text-white hover:bg-violet-600 transition-all">
+                                GitHub <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-violet-400 transition-colors">
+                            EHR & Appointment Engine
+                        </h4>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            Appointment scheduling microservice utilizing Liquibase schema migrations and Hibernate ORM for distributed clinic networks and diagnostic centers.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Hibernate • Liquibase</span>
+                        <span class="text-violet-300 font-semibold">Microservice</span>
+                    </div>
+                </div>
+
+                <!-- 4. Employee Management System -->
+                <div class="glass-dark rounded-2xl overflow-hidden border border-slate-700 card-hover group flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-1 rounded-full border border-amber-500/30 font-medium">
+                                Java CRUD System
+                            </span>
+                            <a href="https://github.com/ChandanKumar274" target="_blank"
+                                class="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-300 bg-slate-800/60 border border-slate-600 rounded-full hover:text-white hover:bg-amber-600 transition-all">
+                                GitHub <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                            Employee Management System
+                        </h4>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            Administrative software solution managing complete employee records, department structures, and secure relational database operations using JDBC and MySQL.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Java • JDBC • MySQL</span>
+                        <span class="text-amber-400 font-semibold">Architecture</span>
+                    </div>
+                </div>
+
+                <!-- 5. Modern Interactive Portfolio -->
+                <div class="glass-dark rounded-2xl overflow-hidden border border-slate-700 card-hover group flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-sky-500/20 text-sky-300 text-xs px-2.5 py-1 rounded-full border border-sky-500/30 font-medium">
+                                Modern Frontend
+                            </span>
+                            <a href="#home"
+                                class="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-300 bg-slate-800/60 border border-slate-600 rounded-full hover:text-white hover:bg-sky-600 transition-all">
+                                Live Here <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition-colors">
+                            Personal Developer Portfolio
+                        </h4>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            Modern responsive developer portfolio featuring dynamic storm lightning atmosphere, custom lagging cursor, AOS scroll triggers, and dark glassmorphism aesthetics.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Tailwind CSS • JS • AOS</span>
+                        <span class="text-sky-400 font-semibold">Portfolio</span>
+                    </div>
+                </div>
+
+                <!-- 6. Role-Based Auth Microservice -->
+                <div class="glass-dark rounded-2xl overflow-hidden border border-slate-700 card-hover group flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-purple-500/20 text-purple-300 text-xs px-2.5 py-1 rounded-full border border-purple-500/30 font-medium">
+                                Security & Cloud
+                            </span>
+                            <a href="https://github.com/ChandanKumar274" target="_blank"
+                                class="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-slate-300 bg-slate-800/60 border border-slate-600 rounded-full hover:text-white hover:bg-purple-600 transition-all">
+                                GitHub <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                            JWT Authentication Service
+                        </h4>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            Reusable Spring Security module providing stateless JSON Web Token (JWT) issuing, token validation, BCrypt password hashing, and role-based endpoint interceptors.
+                        </p>
+                    </div>
+                    <div class="px-6 pb-5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Spring Security • JWT</span>
+                        <span class="text-purple-400 font-semibold">Security</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact" class="py-16 sm:py-20">
+            <div class="glass-dark rounded-3xl p-6 sm:p-10 md:p-12 border border-slate-700/80 relative overflow-hidden"
+                data-aos="zoom-in">
+                <!-- Glowing ambient spotlight -->
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-accent/20 rounded-full blur-[90px] pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
+                    <div>
+                        <h3 class="text-2xl sm:text-4xl font-bold text-white mb-3">
+                            Let's work <span class="text-gradient">together!</span>
+                        </h3>
+                        <p class="text-slate-400 mb-7 text-xs sm:text-sm leading-relaxed">
+                            I am currently available for full-time opportunities and exciting freelance projects. Feel free to connect via phone, email, or send a direct inquiry.
+                        </p>
+
+                        <div class="space-y-4">
+                            <!-- Phone -->
+                            <div class="flex items-center gap-3.5 text-slate-300 group">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-accent group-hover:scale-110 transition-all">
+                                    <i class="fa-solid fa-phone text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[11px] text-slate-400">Phone / WhatsApp</div>
+                                    <a href="tel:+917033501524" class="text-white text-sm font-medium hover:text-accent transition-colors">
+                                        +91 7033501524
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="flex items-center gap-3.5 text-slate-300 group">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-all">
+                                    <i class="fa-solid fa-envelope text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[11px] text-slate-400">Email Address</div>
+                                    <a href="mailto:ku.chandan274@gmail.com" class="text-white text-sm font-medium hover:text-sky-400 transition-colors">
+                                        ku.chandan274@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- GitHub -->
+                            <div class="flex items-center gap-3.5 text-slate-300 group">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-white group-hover:scale-110 transition-all">
+                                    <i class="fa-brands fa-github text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[11px] text-slate-400">GitHub Profile</div>
+                                    <a href="https://github.com/ChandanKumar274" target="_blank"
+                                        class="text-white text-sm font-medium hover:text-accent transition-colors">
+                                        github.com/ChandanKumar274
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="flex items-center gap-3.5 text-slate-300 group">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-all">
+                                    <i class="fa-solid fa-location-dot text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[11px] text-slate-400">Location</div>
+                                    <span class="text-white text-sm font-medium">
+                                        India • Open to Remote & Relocation
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Contact Form -->
+                    <form id="contactForm" class="space-y-3.5">
+                        <div>
+                            <input type="text" name="from_name" placeholder="Your Name" required
+                                class="w-full p-3.5 rounded-xl input-dark text-xs sm:text-sm placeholder:text-slate-500">
+                        </div>
+                        <div>
+                            <input type="email" name="from_email" placeholder="Your Email" required
+                                class="w-full p-3.5 rounded-xl input-dark text-xs sm:text-sm placeholder:text-slate-500">
+                        </div>
+                        <div>
+                            <textarea name="message" rows="4" placeholder="Your Message" required
+                                class="w-full p-3.5 rounded-xl input-dark text-xs sm:text-sm placeholder:text-slate-500"></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn"
+                            class="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold text-sm shadow-lg hover:shadow-neon transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fa-regular fa-paper-plane text-xs"></i>
+                        </button>
+                        <div id="formStatus" class="hidden text-xs text-center font-medium pt-1"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950/90 py-6 sm:py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-slate-500 text-xs sm:text-sm">
+                © <span id="year"></span> Chandan Kumar. All rights reserved.
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="https://github.com/ChandanKumar274" target="_blank" aria-label="GitHub"
+                    class="text-slate-500 hover:text-white transition-colors">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="mailto:ku.chandan274@gmail.com" aria-label="Email"
+                    class="text-slate-500 hover:text-white transition-colors">
+                    <i class="fa-solid fa-envelope text-lg"></i>
+                </a>
+                <a href="tel:+917033501524" aria-label="Phone"
+                    class="text-slate-500 hover:text-white transition-colors">
+                    <i class="fa-solid fa-phone text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS Animations
+        AOS.init({ duration: 900, offset: 50, once: false, mirror: true });
+
+        // Set Current Year dynamically
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Nav Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('hidden');
+        });
+
+        // Close mobile nav on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.add('hidden');
+            });
+        });
+
+        // Dynamic Typewriter Effect
+        const roles = [
+            "Java Full Stack Developer",
+            "Spring Boot Specialist",
+            "Backend Engineer",
+            "RESTful API & Microservices",
+            "Web Solutions Architect"
+        ];
+        let roleIndex = 0;
+
+        function typeWriter() {
+            const heading = document.getElementById("typewriter");
+            if (!heading) return;
+            const word = roles[roleIndex];
+            let charIndex = 0;
+            heading.textContent = "";
+
+            const typeInterval = setInterval(() => {
+                heading.textContent += word.charAt(charIndex);
+                charIndex++;
+                if (charIndex >= word.length) {
+                    clearInterval(typeInterval);
+                    setTimeout(() => { deleteWord(); }, 2000);
+                }
+            }, 80);
+        }
+
+        function deleteWord() {
+            const heading = document.getElementById("typewriter");
+            if (!heading) return;
+            const word = roles[roleIndex];
+            let charIndex = word.length;
+
+            const deleteInterval = setInterval(() => {
+                heading.textContent = word.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex <= 0) {
+                    clearInterval(deleteInterval);
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    typeWriter();
+                }
+            }, 40);
+        }
+        typeWriter();
+
+        // Project Counter Incremental Animation
+        function animateCounter(id, endValue, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            let start = 0;
+            const range = endValue - start;
+            let current = start;
+            const increment = endValue > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            const timer = setInterval(() => {
+                current += increment;
+                obj.innerHTML = current;
+                if (current === endValue) clearInterval(timer);
+            }, stepTime);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounter("projectCounter", 10, 1800);
+                counterObserver.disconnect();
+            }
+        });
+        const counterEl = document.getElementById("projectCounter");
+        if (counterEl) {
+            counterObserver.observe(counterEl);
+        }
+
+        // Contact Form Handling (EmailJS / Mail fallback)
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Sending...</span> <i class="fa-solid fa-spinner fa-spin"></i>';
+
+            if (window.emailjs && window.emailjs.__publicKey && window.emailjs.__publicKey !== "YOUR_EMAILJS_PUBLIC_KEY") {
+                emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                    .then(() => {
+                        formStatus.textContent = '✅ Message sent successfully!';
+                        formStatus.className = 'text-xs text-center font-medium pt-1 text-emerald-400 block';
+                        contactForm.reset();
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalContent;
+                    })
+                    .catch((err) => {
+                        console.error('EmailJS error:', err);
+                        fallbackMail();
+                    });
+            } else {
+                fallbackMail();
+            }
+
+            function fallbackMail() {
+                const name = contactForm.querySelector('[name="from_name"]').value;
+                const email = contactForm.querySelector('[name="from_email"]').value;
+                const msg = contactForm.querySelector('[name="message"]').value;
+                const mailtoUrl = `mailto:ku.chandan274@gmail.com?subject=Contact%20from%20Portfolio%20-%20${encodeURIComponent(name)}&body=${encodeURIComponent("Sender Email: " + email + "\n\nMessage:\n" + msg)}`;
+                
+                window.location.href = mailtoUrl;
+
+                formStatus.textContent = 'Opening your mail client...';
+                formStatus.className = 'text-xs text-center font-medium pt-1 text-sky-400 block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalContent;
+            }
+        });
+
+        // Smooth Custom Trailing Cursor
+        const cursorDot = document.getElementById("cursor-dot");
+        const cursorOutline = document.getElementById("cursor-outline");
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let outlineX = 0;
+        let outlineY = 0;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (cursorDot) {
+                cursorDot.style.left = `${mouseX}px`;
+                cursorDot.style.top = `${mouseY}px`;
+            }
+
+            const hovered = document.elementFromPoint(mouseX, mouseY);
+            const isClickable = hovered?.closest('a, button, input, textarea, .card-hover, .group');
+
+            if (cursorOutline) {
+                if (isClickable) {
+                    cursorOutline.style.transform = "translate(-50%, -50%) scale(1.5)";
+                    cursorOutline.style.backgroundColor = "rgba(139, 92, 246, 0.15)";
+                    cursorOutline.style.borderColor = "rgba(139, 92, 246, 0.8)";
+                } else {
+                    cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
+                    cursorOutline.style.backgroundColor = "transparent";
+                    cursorOutline.style.borderColor = "rgba(255, 255, 255, 0.4)";
+                }
+            }
+        });
+
+        const renderCursor = () => {
+            const ease = 0.16;
+            outlineX += (mouseX - outlineX) * ease;
+            outlineY += (mouseY - outlineY) * ease;
+
+            if (cursorOutline) {
+                cursorOutline.style.left = `${outlineX}px`;
+                cursorOutline.style.top = `${outlineY}px`;
+            }
+            requestAnimationFrame(renderCursor);
+        };
+        renderCursor();
+    </script>
+</body>
+
+</html>
